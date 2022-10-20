@@ -23,6 +23,7 @@ def signin():
     # session['account']= acc
     psw = request.form["password"]
     # session['password']= psw
+    # 彭彭作業回應: session['enter'] == 'open'以上這個判斷式，後面的部份是多出來的，使用者如果透過表單輸入帳號密碼，就算曾經登入過，輸入帳密若是錯誤，我們也會告訴他是輸入帳密錯誤。未來輸入帳號密碼的使用者也可能會輸入不同組的帳號密碼，所以在登入的判斷上不會加入這樣的邏輯
     if (acc == "test" and psw == "test") or session['enter'] == 'open':
         session['enter'] = 'open'
         return redirect(url_for("member")) 
@@ -45,6 +46,7 @@ def member():
 def error():
     w=request.args.get('message','帳號、或密碼輸入錯誤')
     return render_template("error.html",w2=w)
+#研究討論w2=w 的寫法？？？
 
 #跳轉到signout路由，假設沒有紀錄會跳轉到首頁
 @app.route('/signout',)
